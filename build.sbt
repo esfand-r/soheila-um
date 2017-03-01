@@ -29,10 +29,10 @@ resolvers += Resolver.sonatypeRepo("snapshots")
 libraryDependencies ++= Seq(
   "net.codingwell" % "scala-guice_2.11" % "4.1.0",
   "com.enragedginger" % "akka-quartz-scheduler_2.11" % "1.6.0-akka-2.4.x",
-  "com.typesafe.akka" %% "akka-actor" % "2.4.14",
-  "com.typesafe.akka" %% "akka-persistence" % "2.4.14",
-  "com.typesafe.akka" % "akka-stream_2.11" % "2.4.14",
-  "com.typesafe.akka" %% "akka-testkit" % "2.4.14",
+  "com.typesafe.akka" % "akka-actor_2.11" % "2.4.17",
+  "com.typesafe.akka" %% "akka-persistence" % "2.4.17",
+  "com.typesafe.akka" % "akka-stream_2.11" % "2.4.17",
+  "com.typesafe.akka" %% "akka-testkit" % "2.4.17",
   "org.sangria-graphql" % "sangria_2.11" % "1.0.0", // SimpleFetcherCache does not cache Relation and was fixed in snapshot
   "org.sangria-graphql" % "sangria-play-json_2.11" % "1.0.0",
   // Security
@@ -43,18 +43,20 @@ libraryDependencies ++= Seq(
   "com.mohiva" % "play-silhouette-persistence-reactivemongo_2.11" % "4.0.0",
   "com.iheart" % "ficus_2.11" % "1.4.0",
   "io.soheila" % "play-reactivemongo-commons_2.11" % "0.1.0-alpha1",
+  "com.github.romix.akka" % "akka-kryo-serialization_2.11" % "0.5.0",
 
-  "de.flapdoodle.embed" % "de.flapdoodle.embed.mongo" % "1.50.5" % Test,
+  "de.flapdoodle.embed" % "de.flapdoodle.embed.mongo" % "2.0.0" % Test,
   "com.mohiva" %% "play-silhouette-testkit" % "4.0.0" % Test,
   "net.codingwell" % "scala-guice_2.11" % "4.1.0" % Test,
   specs2 % Test,
-  "org.specs2" %% "specs2-core" % "3.8.5" % Test,
-  "org.specs2" % "specs2-matcher-extra_2.11" % "3.8.5" % Test,
-  "org.specs2" % "specs2-mock_2.11" % "3.8.5" % Test
+  "org.specs2" %% "specs2-core" % "3.8.6" % "test",
+  "com.typesafe.play" % "play-specs2_2.11" % "2.5.12"
 
 )
 
 libraryDependencies ~= { _.map(_.exclude("org.slf4j", "slf4j-simple")) }
+libraryDependencies ~= { _.map(_.exclude("org.specs2", "specs2-core")) }
+
 
 lazy val `soheila-um` = Project(id = "soheila-um", base = file("."))
   .enablePlugins(PlayScala, JavaAppPackaging).disablePlugins(PlayLayoutPlugin)
